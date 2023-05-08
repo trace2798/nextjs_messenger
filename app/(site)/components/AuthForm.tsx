@@ -2,8 +2,11 @@
 
 import Button from "@/app/components/Button";
 import Input from "@/app/components/input/Input";
+import axios from "axios";
 import { FC, useCallback, useState } from "react";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
+import { signIn, useSession } from "next-auth/react";
+import { toast } from "react-hot-toast";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -35,9 +38,25 @@ const AuthForm = () => {
 
     if (variant === "REGISTER") {
       //axios register
+      axios
+        .post("api/register", data)
+        .catch(() => toast.error("Something went wrong"))
+        .finally(() => setIsLoading(false));
     }
     if (variant === "LOGIN") {
-      //NextAuth SignIn
+      signIn("credentials", {
+        ...data,
+        redirect: false,
+      })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error("Invalid Credentials");
+          }
+          if (callback?.ok && !callback?.error) {
+            toast.success("Success");
+          }
+        })
+        .finally(() => setIsLoading(false));
     }
   };
 

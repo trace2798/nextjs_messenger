@@ -26,7 +26,16 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       className={clsx(
         `
-        items-center justify-center w-full px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black
+        flex 
+        justify-center 
+        rounded-md 
+        px-3 
+        py-2 
+        text-sm 
+        font-semibold 
+        focus-visible:outline 
+        focus-visible:outline-2 
+        focus-visible:outline-offset-2 
         `,
         disabled && "opacity-50 cursor-default",
         fullWidth && "w-full",
@@ -35,7 +44,7 @@ const Button: React.FC<ButtonProps> = ({
           "bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600",
         !secondary &&
           !danger &&
-          "bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600"
+          "bg-blue-500 hover:bg-blue-600 focus-visible:outline-sky-600"
       )}
     >
       {children}
