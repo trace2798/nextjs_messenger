@@ -1,11 +1,16 @@
-import React from 'react'
+"use client";
 
-type Props = {}
+import axios from "axios";
+import { FC } from "react";
 
-const Body = (props: Props) => {
+interface BodyProps {}
+
+const Body: FC<BodyProps> = ({}) => {
   return (
-    <div>Body</div>
-  )
-}
+    <>
+      <div className="flex-1 overflow-y-auto">Body</div>
+    </>
+  );
+};
 
-export default Body
+export default Body;
