@@ -70,8 +70,8 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     <div
       onClick={handleClick}
       className={clsx(
-        `w-full relative flex items-center space-x-3 p-3 hover:bg-neutral-100 rounded-lg transition cursor-pointer`,
-        selected ? "bg-neutral-100" : "bg-white"
+        `w-full relative flex items-center space-x-3 p-3 hover:bg-neutral-100 dark:hover:bg-slate-600 rounded-lg transition cursor-pointer`,
+        selected ? "bg-neutral-100 dark:bg-slate-600 " : "bg-white dark:bg-slate-800"
       )}
     >
       {data.isGroup ? (
@@ -84,11 +84,11 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
         <div className="focus:outline-none">
           <span className="absolute inset-0" aria-hidden="true" />
           <div className="flex justify-between items-center mb-1">
-            <p className="text-md font-medium text-gray-900">
+            <p className="text-md font-medium text-gray-900 dark:text-neutral-300">
               {data.name || otherUser.name}
             </p>
             {lastMessage?.createdAt && (
-              <p className="text-xs text-gray-400 font-light">
+              <p className="text-xs text-gray-400 dark:text-neutral-300 font-light">
                 {format(new Date(lastMessage.createdAt), "p")}
               </p>
             )}
@@ -96,7 +96,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
           <p
             className={clsx(
               `truncate text-sm`,
-              hasSeen ? "text-gray-500" : "text-black font-medium")}>
+              hasSeen ? "text-gray-500 dark:text-neutral-400" : "text-black dark:text-neutral-300 font-medium")}>
             {lastMessageText}
           </p>
         </div>
