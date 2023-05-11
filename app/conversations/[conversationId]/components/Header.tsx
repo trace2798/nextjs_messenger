@@ -17,13 +17,13 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ conversation }) => {
   const otherUser = useOtherUser(conversation);
-  
+
   const [drawerOpen, setDrawerOpen] = useState(false);
-  
+
   const { members } = useActiveList();
-  
+
   const isActive = members.indexOf(otherUser?.email!) !== -1;
-  
+
   const statusText = useMemo(() => {
     if (conversation.isGroup) {
       return `${conversation.users.length} members`;
@@ -39,7 +39,7 @@ const Header: FC<HeaderProps> = ({ conversation }) => {
         isOpen={drawerOpen}
         onClose={() => setDrawerOpen(false)}
       />
-      <div className="bg-white w-full flex border-b-[1px] sm:px-4 py-3 px-4 lg:px-6 justify-center items-center shadow-sm">
+      <div className="bg-white w-full flex border-b-[1px] sm:px-4 py-3 px-4 lg:px-6 justify-between items-center shadow-sm">
         <div className="flex gap-3 items-center">
           <Link
             href="/conversations"
