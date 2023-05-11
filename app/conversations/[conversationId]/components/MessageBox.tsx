@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { FC, useState } from "react";
+import ImageModal from "./ImageModal";
 
 // Define the props expected by the MessageBox component
 interface MessageBoxProps {
@@ -14,18 +15,18 @@ interface MessageBoxProps {
 }
 
 const MessageBox: FC<MessageBoxProps> = ({ data, isLast }) => {
-   // Get the user session information
-    const session = useSession();
-     // Set up state to control whether or not the image modal is open
+  // Get the user session information
+  const session = useSession();
+  // Set up state to control whether or not the image modal is open
   const [imageModalOpen, setImageModalOpen] = useState(false);
-// Determine whether the message was sent by the current user
+  // Determine whether the message was sent by the current user
   const isOwn = session.data?.user?.email === data?.sender?.email;
   // Build a string listing the users who have seen the message, excluding the sender
   const seenList = (data.seen || [])
     .filter((user) => user.email !== data?.sender?.email)
     .map((user) => user.name)
     .join(", ");
-// Build className strings based on message ownership and other properties
+  // Build className strings based on message ownership and other properties
   const container = clsx("flex gap-3 p-4", isOwn && "justify-end");
   const avatar = clsx(isOwn && "order-2");
   const body = clsx("flex flex-col gap-2", isOwn && "items-end");
@@ -36,13 +37,13 @@ const MessageBox: FC<MessageBoxProps> = ({ data, isLast }) => {
   );
   return (
     <div className={container}>
-           {/* Display the avatar for the message sender */}
+      {/* Display the avatar for the message sender */}
       <div className={avatar}>
         <Avatar user={data.sender} />
       </div>
       {/* Display th message contents */}
       <div className={body}>
-         {/* Display the message sender's name and the time the message was sent */}
+        {/* Display the message sender's name and the time the message was sent */}
         <div className="flex items-center gap-1">
           <div className="text-sm text-gray-500">{data.sender.name}</div>
           <div className="text-xs text-gray-400">
@@ -51,8 +52,8 @@ const MessageBox: FC<MessageBoxProps> = ({ data, isLast }) => {
         </div>
         {/* Display the message body or image */}
         <div className={message}>
-          {/* <ImageModal src={data.image} isOpen={imageModalOpen} onClose={() => setImageModalOpen(false)} /> */}
-           {/* Display the message image, if there is one */}
+          <ImageModal src={data.image} isOpen={imageModalOpen} onClose={() => setImageModalOpen(false)} />
+          {/* Display the message image, if there is one */}
           {data.image ? (
             <Image
               alt="Image"
