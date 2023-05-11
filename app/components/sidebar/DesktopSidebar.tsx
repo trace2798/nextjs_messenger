@@ -6,6 +6,8 @@ import SettingsModal from "./SettingsModal";
 import { useState } from "react";
 import { User } from "@prisma/client";
 import Avatar from "../Avatar";
+import { The_Girl_Next_Door } from "next/font/google";
+import { ThemeToggle } from "../theme/theme-toggle";
 
 interface DesktopSidebarProps {
   currentUser: User
@@ -38,6 +40,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
           </ul>
         </nav>
         <nav className="mt-4 flex flex-col justify-between items-center">
+        <ThemeToggle />
           <div 
             onClick={() => setIsOpen(true)} 
             className="cursor-pointer hover:opacity-75 transition"
