@@ -22,7 +22,7 @@ const LoadingModal = () => {
               fixed 
               inset-0 
               bg-gray-100 
-              dark:bg-indigo-300
+              dark:bg-slate-500
               bg-opacity-50 
               transition-opacity
             "

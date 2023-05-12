@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
@@ -30,5 +29,28 @@ export async function POST(request: Request) {
   } catch (error: any) {
     console.log(error, "ERROR_SETTINGS");
     return new NextResponse("Internal Error", { status: 500 });
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    // Get the current user's information
+    const currentUser = await getCurrentUser();
+
+    // If no current user is found, return null
+    if (!currentUser?.id) {
+      return NextResponse.json(null);
+    }
+   
+    
+    const deletedAccount = await prisma.user.deleteMany({
+      where: {
+        id: currentUser.id,
+      },
+    });
+    return NextResponse.json(deletedAccount);
+  } catch (error) {
+    // If an error occurs, return null
+    return NextResponse.json(null);
   }
 }
