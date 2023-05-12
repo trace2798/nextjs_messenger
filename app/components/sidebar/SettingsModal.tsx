@@ -133,6 +133,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                       </Button>
                     </CldUploadButton>
                   </div>
+                  {/* Account Delete */}
                   <div className="flex justify-center gap-10 my-8">
                     <div
                       onClick={() => setConfirmOpen(true)}

@@ -41,12 +41,19 @@ export async function DELETE(request: Request) {
     if (!currentUser?.id) {
       return NextResponse.json(null);
     }
-   
-    
+    // const body = await request.json();
+    // const { name, image, conversationIds, seenMessageIds } = body;
+
     const deletedAccount = await prisma.user.deleteMany({
       where: {
         id: currentUser.id,
       },
+      // data: {
+      //   name: name,
+      //   image: image,
+      //   conversationIds: conversationIds,
+      //   seenMessageIds: seenMessageIds,
+      // },
     });
     return NextResponse.json(deletedAccount);
   } catch (error) {
