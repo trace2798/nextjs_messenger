@@ -25,7 +25,7 @@ const Input: FC<InputProps> = ({
     <>
       <label
         htmlFor={id}
-        className="block text-sm font-medium leading-6 text-gray-600"
+        className="block text-sm font-medium leading-6 text-gray-600 dark:text-neutral-200"
       >
         {label}
       </label>
@@ -37,13 +37,15 @@ const Input: FC<InputProps> = ({
           disabled={disabled}
           {...register(id, { required })}
           className={clsx(
-            ` form-input
+            `form-input
         block 
         w-full 
         rounded-md 
         border-0 
         py-1.5 
-        text-gray-900 
+        text-gray-900
+        dark:text-neutral-200
+        dark:bg-slate-600
         shadow-sm 
         ring-1 
         ring-inset 

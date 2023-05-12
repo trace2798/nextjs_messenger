@@ -20,7 +20,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
   required,
   register,
 }) => {
-     // Renders an input element with the specified props.
+  // Renders an input element with the specified props.
   return (
     <div className="relative w-full">
       <input
@@ -29,7 +29,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
         autoComplete={id}
         {...register(id, { required })}
         placeholder={placeholder}
-        className="text-black font-light py-2 px-4 bg-neutral-100 w-full rounded-full focus:outline-none"
+        className="text-black dark:text-neutral-300 font-light py-2 px-4 bg-neutral-100 dark:bg-slate-600 w-full rounded-full focus:outline-none"
       />
     </div>
   );

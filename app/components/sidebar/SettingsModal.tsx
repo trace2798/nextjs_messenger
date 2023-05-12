@@ -26,7 +26,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(currentUser, "&TEST_CURRENT_USER");
+  // console.log(currentUser, "&TEST_CURRENT_USER");
 
   const {
     register,
@@ -73,11 +73,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                 font-semibold 
                 leading-7 
                 text-gray-900
+                dark:text-neutral-100
               "
             >
               Profile
             </h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
+            <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-neutral-200">
               Edit your public information.
             </p>
 
@@ -99,6 +100,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     font-medium 
                     leading-6 
                     text-gray-900
+                    dark:text-neutral-200
                   "
                 >
                   Photo

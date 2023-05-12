@@ -21,7 +21,7 @@ const Select: React.FC<SelectProps> = ({
 }) => {
   return (
     <div className="z-[100]">
-      <label className="block text-sm font-medium leading-6 text-gray-900">
+      <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-neutral-300">
         {label}
       </label>
       <div className="mt-2">
@@ -37,7 +37,7 @@ const Select: React.FC<SelectProps> = ({
             menuPortal: (base) => ({ ...base, zIndex: 9999 }),
           }}
           classNames={{
-            control: () => "text-sm",
+            control: () => "text-sm dark:bg-slate-600 dark:text-slate-700",
           }}
         />
       </div>

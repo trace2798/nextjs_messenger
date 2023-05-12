@@ -46,7 +46,7 @@ const Form: FC<FormProps> = ({}) => {
   };
 
   return (
-    <div className="py-4 px-4 bg-white border-t flex items-center gap-2 lg:gap-4 w-full">
+    <div className="py-4 px-4 bg-white dark:bg-slate-800 border-t flex items-center gap-2 lg:gap-4 w-full">
       {/* Cloudinary upload button for uploading images. */}
       <CldUploadButton
         options={{ maxFiles: 1 }}

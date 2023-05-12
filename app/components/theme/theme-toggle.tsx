@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import { themeEffect } from "./theme-effect";
-import va from "@vercel/analytics";
+// import va from "@vercel/analytics";
 
 export function ThemeToggle() {
   // a `null` preference implies auto
@@ -50,16 +50,11 @@ export function ThemeToggle() {
       {isHovering && (
         <span
           className={`
-            text-[9px]
-            text-gray-400
-            mr-[-5px]
-
+            text-[9px] text-gray-400 mr-[-5px]
             /* mobile */
-            hidden
-
-            md:inline
+            hidden md:inline
           `}
-        >
+        > 
           {preference === null
             ? "System"
             : preference === "dark"
@@ -107,9 +102,9 @@ export function ThemeToggle() {
             localStorage.setItem("theme", newPreference);
           }
 
-          va.track("Theme toggle", {
-            Theme: newPreference === null ? "system" : newPreference,
-          });
+          // va.track("Theme toggle", {
+          //   Theme: newPreference === null ? "system" : newPreference,
+          // });
 
           setPreference(newPreference);
         }}
@@ -148,6 +143,7 @@ function MoonIcon(props: any) {
     </svg>
   );
 }
+
 
 function SunIcon(props: any) {
   return (
