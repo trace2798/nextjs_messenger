@@ -44,17 +44,31 @@ export async function DELETE(request: Request) {
     // const body = await request.json();
     // const { name, image, conversationIds, seenMessageIds } = body;
 
-    const deletedAccount = await prisma.user.deleteMany({
-      where: {
-        id: currentUser.id,
-      },
-      // data: {
-      //   name: name,
-      //   image: image,
-      //   conversationIds: conversationIds,
-      //   seenMessageIds: seenMessageIds,
-      // },
-    });
+    // const deletedAccount = await prisma.user.deleteMany({
+    //   where: {
+    //     id: currentUser.id,
+    //   },
+    // data: {
+    //   name: name,
+    //   image: image,
+    //   conversationIds: conversationIds,
+    //   seenMessageIds: seenMessageIds,
+    // },
+    const deletedAccount = await prisma.$transaction([
+      prisma.user.deleteMany({
+        where: {
+          id: currentUser.id,
+        },
+      }),
+      prisma.conversation.deleteMany({
+        where: {
+          userIds: {
+            has: currentUser.id,
+          },
+        },
+      }),
+    ]);
+    // });
     return NextResponse.json(deletedAccount);
   } catch (error) {
     // If an error occurs, return null
