@@ -6,7 +6,6 @@ import SettingsModal from "./SettingsModal";
 import { useState } from "react";
 import { User } from "@prisma/client";
 import Avatar from "../Avatar";
-import { The_Girl_Next_Door } from "next/font/google";
 import { ThemeToggle } from "../theme/theme-toggle";
 
 interface DesktopSidebarProps {
@@ -18,8 +17,6 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
 }) => {
   const routes = useRoutes();
   const [isOpen, setIsOpen] = useState(false);
-
-  // console.log({ currentUser, }, 'TEST')
 
   return ( 
     <>
