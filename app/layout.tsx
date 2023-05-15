@@ -18,10 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <meta
+        name="google-site-verification"
+        content="NoOsOcXBBQtuh7XngLA9yhKLQ5xucECGvRqZjrtHal0"
+      />
       <body className={inter.className}>
         <AuthContext>
           <ToasterContext />
-          <ActiveStatus/>
+          <ActiveStatus />
           {children}
         </AuthContext>
       </body>
