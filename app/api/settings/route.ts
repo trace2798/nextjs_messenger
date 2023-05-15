@@ -1,7 +1,28 @@
+/**
+ * This code defines two API endpoints: POST and DELETE.
+ *
+ * POST Endpoint:
+ * - Updates the current user's name and image in the database.
+ * - Requires authentication.
+ * - Expects a JSON body with 'name' and 'image' properties.
+ * - Returns the updated user object as a JSON response.
+ *
+ * DELETE Endpoint:
+ * - Deletes the current user's account and associated conversations from the database.
+ * - Requires authentication.
+ * - Returns the deleted account details as a JSON response.
+ */
+
 import { NextResponse } from "next/server";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
+/**
+ * POST endpoint for updating the current user's name and image.
+ *
+ * @param request - The incoming HTTP request object.
+ * @returns A response object containing the updated user object as JSON.
+ */
 // Define an asynchronous function called POST that takes a request object as its parameter
 export async function POST(request: Request) {
   try {
@@ -32,6 +53,12 @@ export async function POST(request: Request) {
   }
 }
 
+/**
+ * DELETE endpoint for deleting the current user's account and associated conversations.
+ *
+ * @param request - The incoming HTTP request object.
+ * @returns A response object containing the deleted account details as JSON.
+ */
 export async function DELETE(request: Request) {
   try {
     // Get the current user's information
@@ -41,19 +68,7 @@ export async function DELETE(request: Request) {
     if (!currentUser?.id) {
       return NextResponse.json(null);
     }
-    // const body = await request.json();
-    // const { name, image, conversationIds, seenMessageIds } = body;
-
-    // const deletedAccount = await prisma.user.deleteMany({
-    //   where: {
-    //     id: currentUser.id,
-    //   },
-    // data: {
-    //   name: name,
-    //   image: image,
-    //   conversationIds: conversationIds,
-    //   seenMessageIds: seenMessageIds,
-    // },
+    // Delete the user's account and associated conversations using Prisma's transaction
     const deletedAccount = await prisma.$transaction([
       prisma.user.deleteMany({
         where: {
@@ -68,7 +83,7 @@ export async function DELETE(request: Request) {
         },
       }),
     ]);
-    // });
+    // Return the deleted account details as a JSON response using the NextResponse object
     return NextResponse.json(deletedAccount);
   } catch (error) {
     // If an error occurs, return null

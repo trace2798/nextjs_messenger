@@ -15,9 +15,12 @@ export default function Home() {
             src="/images/logo.png"
             alt="Logo"
           /> */}
-          <h2 className="mt-6 text-center text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-t from-gray-900 to-gray-500">
+          <h2 className="mt-6 text-center text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-gray-900 to-gray-500">
             Sign in to your account
           </h2>
+          <p className="text-center text-slate-600 uppercase text-xs">
+            Confidential. Secure. Classified
+          </p>
         </div>
         <div className="flex justify-center mt-4">
           <ThemeToggle />
