@@ -50,7 +50,7 @@ export function ThemeToggle() {
       {isHovering && (
         <span
           className={`
-            text-[9px] text-gray-400 mr-[-5px]
+            text-[9px] text-gray-400 mr-[5px]
             /* mobile */
             hidden md:inline
           `}

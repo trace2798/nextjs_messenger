@@ -22,7 +22,7 @@ export default function Home() {
             </span>
           </h2>
         </div>
-        <div className="flex justify-center mt-2">
+        <div className="flex justify-center mt-4">
           <ThemeToggle />
         </div>
         <AuthForm />
