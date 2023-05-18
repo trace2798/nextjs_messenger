@@ -20,6 +20,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { message, image, conversationId } = body;
     // Check if the current user is authorized
+    //The currentUser object is obtained by calling the getCurrentUser function. The ?. (optional chaining) operator is used to safely access the id and email properties of currentUser. If either currentUser.id or currentUser.email is falsy (null, undefined, or an empty string), it means that the user is not properly authenticated or authorized.
     if (!currentUser?.id || !currentUser?.email) {
       return new NextResponse("Unauthorized", { status: 401 });
     }

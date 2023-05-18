@@ -1,4 +1,8 @@
 "use client";
+/**
+ * This component represents a theme toggle button.
+ * It allows the user to switch between light and dark themes, with an optional system theme.
+ */
 import { useEffect, useState, useCallback } from "react";
 import { themeEffect } from "./theme-effect";
 // import va from "@vercel/analytics";
@@ -12,28 +16,41 @@ export function ThemeToggle() {
   const [isHovering, setIsHovering] = useState(false);
   const [isHoveringOverride, setIsHoveringOverride] = useState(false);
 
+  /**
+   * Event handler for media query change.
+   * Updates the current theme based on the media query result.
+   */
   const onMediaChange = useCallback(() => {
     const current = themeEffect();
     setCurrentTheme(current);
   }, []);
 
   useEffect(() => {
+    // Retrieve the theme preference from localStorage
     setPreference(localStorage.getItem("theme"));
+    // Get the initial theme and set it as the current theme
     const current = themeEffect();
     setCurrentTheme(current);
-
+    // Add event listener for media query changes
     const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
     matchMedia.addEventListener("change", onMediaChange);
+    // Remove event listener when component is unmounted
     return () => matchMedia.removeEventListener("change", onMediaChange);
   }, [onMediaChange]);
 
+  /**
+   * Event handler for storage change.
+   * Updates the preference when the storage value changes.
+   */
   const onStorageChange = useCallback(
     (event: StorageEvent) => {
       if (event.key === "theme") setPreference(event.newValue);
     },
     [setPreference]
   );
-
+  /**
+   * Update the current theme when the preference changes.
+   */
   // when the preference changes, whether from this tab or another,
   // we want to recompute the current theme
   useEffect(() => {
@@ -41,7 +58,9 @@ export function ThemeToggle() {
   }, [preference]);
 
   useEffect(() => {
+    // Add event listener for storage changes
     window.addEventListener("storage", onStorageChange);
+    // Remove event listener when component is unmounted
     return () => window.removeEventListener("storage", onStorageChange);
   });
 
@@ -54,7 +73,7 @@ export function ThemeToggle() {
             /* mobile */
             hidden md:inline
           `}
-        > 
+        >
           {preference === null
             ? "System"
             : preference === "dark"
@@ -81,6 +100,7 @@ export function ThemeToggle() {
           dark:[&_.moon-icon]:hidden
           dark:[&_.sun-icon]:inline
         }`}
+        // The onClick event handler triggers when the button is clicked. It updates the theme preference based on the current theme and system theme, either saving it to localStorage or removing the preference if the user prefers the OS theme.
         onClick={(ev) => {
           ev.preventDefault();
           // prevent the hover state from rendering
@@ -108,6 +128,7 @@ export function ThemeToggle() {
 
           setPreference(newPreference);
         }}
+        // The onMouseEnter and onMouseLeave event handlers control the hover state of the button.
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => {
           setIsHovering(false);
@@ -143,7 +164,6 @@ function MoonIcon(props: any) {
     </svg>
   );
 }
-
 
 function SunIcon(props: any) {
   return (
